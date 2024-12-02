@@ -1,11 +1,10 @@
 ﻿using AdventOfCode.DownloadInputFile;
 
 var donwloadInputClient = new DonwloadInputClient( 1 , 2024, args[0]);
+var inputValues = await donwloadInputClient.DownloadInputAsync();
 
 var list1 = new List<int>();
 var list2 = new List<int>();
-
-var inputValues = await donwloadInputClient.DownloadInputAsync();
 
 inputValues
     .Split("\n")
@@ -22,6 +21,7 @@ var orderedList1 = list1.OrderBy(x => x).ToList();
 var orderedList2 = list2.OrderBy(x => x).ToList();
 
 var sum = 0;
+
 for (int i = 0; i < list1.Count; i++)
 {
     sum += Math.Abs(orderedList1[i] - orderedList2[i]);
