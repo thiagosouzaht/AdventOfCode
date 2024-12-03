@@ -21,14 +21,7 @@ var orderedList1 = list1.OrderBy(x => x).ToList();
 var orderedList2 = list2.OrderBy(x => x).ToList();
 
 var sum = orderedList1.Zip(orderedList2, (x, y) => Math.Abs(x - y)).Sum();
-
-//part 1
-Console.WriteLine($"Sum: {sum}");
-
-//part 2
-//This time, you'll need to figure out exactly how often each number from the left list appears in the right list.
-//Calculate a total similarity score by adding up each number in the left list after multiplying it by the number of times that number appears in the right list.
+Console.WriteLine($"Sum part 1: {sum}");
 
 var sumPart2 = list1.Sum(valueOnList1 => list2.Count(x => x == valueOnList1) * valueOnList1);
-
-Console.WriteLine($"Sum: {sumPart2}");
+Console.WriteLine($"Sum part 2: {sumPart2}");
