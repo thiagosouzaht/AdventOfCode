@@ -1,6 +1,6 @@
 namespace AdventOfCode.DownloadInputFile;
 
-public class DonwloadInputClient
+public class DownloadInputClient
 {
     private readonly string _sessionId;
 
@@ -9,7 +9,7 @@ public class DonwloadInputClient
     private string _relativePath = string.Empty;
     private string userFileLocation => Path.Combine(Environment.CurrentDirectory, "cache", $"{_sessionId}-{_relativePath.Replace('/', '-')}.txt");
     
-    public DonwloadInputClient(int day, int year, string sessionId)
+    public DownloadInputClient(int day, int year, string sessionId)
     {
         _sessionId = sessionId;
         
