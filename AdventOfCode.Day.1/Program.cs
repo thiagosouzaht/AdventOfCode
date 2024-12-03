@@ -1,7 +1,7 @@
 ﻿using AdventOfCode.DownloadInputFile;
 
-var donwloadInputClient = new DonwloadInputClient( 1 , 2024, args[0]);
-var inputValues = await donwloadInputClient.DownloadInputAsync();
+var downloadInputClient = new DownloadInputClient(1, 2024, args[0]);
+var inputValues = await downloadInputClient.DownloadInputAsync();
 
 var list1 = new List<int>();
 var list2 = new List<int>();
@@ -20,12 +20,7 @@ inputValues
 var orderedList1 = list1.OrderBy(x => x).ToList();
 var orderedList2 = list2.OrderBy(x => x).ToList();
 
-var sum = 0;
-
-for (int i = 0; i < list1.Count; i++)
-{
-    sum += Math.Abs(orderedList1[i] - orderedList2[i]);
-}
+var sum = orderedList1.Zip(orderedList2, (x, y) => Math.Abs(x - y)).Sum();
 
 //part 1
 Console.WriteLine($"Sum: {sum}");
@@ -34,10 +29,6 @@ Console.WriteLine($"Sum: {sum}");
 //This time, you'll need to figure out exactly how often each number from the left list appears in the right list.
 //Calculate a total similarity score by adding up each number in the left list after multiplying it by the number of times that number appears in the right list.
 
-var sumPart2 = 0;
-foreach (var valueOnList1 in list1)
-{
-    sumPart2 += list2.Count(x => x == valueOnList1) * valueOnList1;
-}
+var sumPart2 = list1.Sum(valueOnList1 => list2.Count(x => x == valueOnList1) * valueOnList1);
 
 Console.WriteLine($"Sum: {sumPart2}");
